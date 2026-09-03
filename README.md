@@ -1,2 +1,2 @@
 # You-Pick-
-CS 2114 Project 1
+An interactive food-ordering assistant that cures dinner indecision by turning a quick cravings survey into a dynamically filtered, personalized meal with your name on it.
