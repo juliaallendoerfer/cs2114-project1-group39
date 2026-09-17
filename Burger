@@ -12,4 +12,14 @@ public class Burger extends Food {
     public Burger(String name, double price, ArrayList<Ingredient> ingredients) {
         super(name, price, ingredients);
     }
+
+    /**
+     * Returns the burger's name and price as a string.
+     *
+     * @return the burger's formatted name and price
+     */
+    @Override
+    public String toString() {
+        return "Burger: " + getName() + ", Price: $" + getPrice();
+    }
 }
