@@ -1,0 +1,5 @@
+public class Side extends Food {
+    public Side(String name, double price, ArrayList<Ingredient> ingredients) {
+        super(name, price, ingredients);
+    }
+}
