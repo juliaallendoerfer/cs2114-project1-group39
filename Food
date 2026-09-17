@@ -64,11 +64,7 @@ public class Food{
          * @return all ingredients in string form
          */
         public ArrayList<Ingredient> getIngredients() {
-            String result = "";
-            for (Ingredient ingredient : ingredients) {
-                result += ingredient.getName() + ", ";
-            }
-            return result;
+            return ingredients;
         }
 
         /**
