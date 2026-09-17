@@ -2,12 +2,6 @@
  * Represents a food item with a name, price, and list of ingredients.
  */
 public class Food{
-    /**
-     * Starts the application.
-     *
-     * @param args command-line arguments supplied when the application starts
-     */
-    public static void main(String[] args) {
         /** The name of the food item. */
         String name;
         /** The price of the food item. */

@@ -1,0 +1,15 @@
+/**
+ * Represents a burger item of type Food.
+ */
+public class Burger extends Food {
+    /**
+     * Creates a burger with the specified details.
+     *
+     * @param name: the name of the burger
+     * @param price: the price of the burger
+     * @param ingredients: the ingredients contained in the burger
+     */
+    public Burger(String name, double price, ArrayList<Ingredient> ingredients) {
+        super(name, price, ingredients);
+    }
+}
