@@ -1,0 +1,41 @@
+public class Food{
+    public static void main(String[] args) {
+        String name;
+        double price;
+        ArrayList<Ingredient> ingredients;
+
+        public Food(String name, double price, ArrayList<Ingredient> ingredients) {
+            this.name = name;
+            this.price = price;
+            this.ingredients = ingredients;
+        }
+
+        public String getName() {
+            return name;
+        }
+        
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public ArrayList<Ingredient> getIngredients() {
+            return ingredients;
+        }
+
+        public void setIngredients(ArrayList<Ingredient> ingredients) {
+            this.ingredients = ingredients;
+        }
+
+        public String toString() {
+            return name;
+        }
+    }
+}
