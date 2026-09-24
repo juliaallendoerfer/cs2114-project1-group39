@@ -5,17 +5,11 @@ import java.util.ArrayList;
 /**
  * Tests the Burger class.
  */
-public class BurgerTest
+public class BurgerTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Burger burger;
     private ArrayList<Ingredient> ingredients;
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
 
     /**
      * Sets up each test method.
@@ -34,11 +28,8 @@ public class BurgerTest
     /**
      * Tests that the burger stores its name.
      */
-    @Test
     public void testGetName()
     {
-        setUp();
-
         assertEquals("Cheeseburger", burger.getName());
     }
 
@@ -46,11 +37,8 @@ public class BurgerTest
     /**
      * Tests that the burger stores its price.
      */
-    @Test
     public void testGetPrice()
     {
-        setUp();
-
         assertEquals(8.50, burger.getPrice(), 0.001);
     }
 
@@ -58,11 +46,8 @@ public class BurgerTest
     /**
      * Tests that the burger stores its ingredients.
      */
-    @Test
     public void testGetIngredients()
     {
-        setUp();
-
         assertEquals(ingredients, burger.getIngredients());
         assertEquals(3, burger.getIngredients().size());
     }
@@ -71,11 +56,8 @@ public class BurgerTest
     /**
      * Tests that a burger is a Food object.
      */
-    @Test
     public void testBurgerIsFood()
     {
-        setUp();
-
         assertEquals(true, burger instanceof Food);
     }
 
@@ -83,11 +65,8 @@ public class BurgerTest
     /**
      * Tests the burger string representation.
      */
-    @Test
     public void testToString()
     {
-        setUp();
-
         assertEquals(
             "Burger: Cheeseburger, Price: $8.5",
             burger.toString());
@@ -97,10 +76,8 @@ public class BurgerTest
     /**
      * Tests a burger with an empty ingredient list.
      */
-    @Test
     public void testEmptyIngredients()
     {
-        setUp();
         Burger plain = new Burger(
             "Plain Burger",
             6.00,
@@ -116,11 +93,8 @@ public class BurgerTest
     /**
      * Tests allergen checking inherited from Food.
      */
-    @Test
     public void testContainsAllergen()
     {
-        setUp();
-
         assertEquals(true, burger.containsAllergen("Dairy"));
         assertEquals(false, burger.containsAllergen("Gluten"));
     }
