@@ -10,16 +10,8 @@ import java.util.Scanner;
 /**
  * Tests the Main class.
  */
-public class MainTest
+public class MainTest extends student.TestCase
 {
-    // ~ Fields ................................................................
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
-
     /**
      * Creates a scanner containing the specified input.
      *
@@ -36,11 +28,9 @@ public class MainTest
     /**
      * Tests getCustomerName with a valid name.
      */
-    @Test
     public void testGetCustomerName()
     {
         Scanner scanner = createScannerWithInput("John Doe\n");
-
         assertEquals("John Doe", Main.getCustomerName(scanner));
     }
 
@@ -49,12 +39,10 @@ public class MainTest
      * Tests getCustomerName with invalid input followed
      * by a valid name.
      */
-    @Test
     public void testGetCustomerNameInvalidInput()
     {
         Scanner scanner =
             createScannerWithInput("\nJohn123\nJane Smith\n");
-
         assertEquals("Jane Smith", Main.getCustomerName(scanner));
     }
 
@@ -63,7 +51,6 @@ public class MainTest
      * Tests that names containing hyphens and apostrophes
      * are accepted.
      */
-    @Test
     public void testGetCustomerNameSpecialCharacters()
     {
         Scanner scanner =
@@ -78,11 +65,9 @@ public class MainTest
     /**
      * Tests getValidChoice with valid input.
      */
-    @Test
     public void testGetValidChoice()
     {
         Scanner scanner = createScannerWithInput("2\n");
-
         assertEquals(2, Main.getValidChoice(scanner, 1, 3));
     }
 
@@ -91,7 +76,6 @@ public class MainTest
      * Tests getValidChoice with invalid input followed
      * by a valid choice.
      */
-    @Test
     public void testGetValidChoiceInvalidInput()
     {
         Scanner scanner =
@@ -104,7 +88,6 @@ public class MainTest
     /**
      * Tests selecting allergens.
      */
-    @Test
     public void testSelectAllergens()
     {
         Scanner scanner =
@@ -123,7 +106,6 @@ public class MainTest
     /**
      * Tests selecting no allergens.
      */
-    @Test
     public void testSelectNoAllergens()
     {
         Scanner scanner =
@@ -139,7 +121,6 @@ public class MainTest
     /**
      * Tests adding a food to an order.
      */
-    @Test
     public void testSelectFood()
     {
         ArrayList<Food> foods = new ArrayList<Food>();
@@ -162,7 +143,6 @@ public class MainTest
     /**
      * Tests canceling food selection.
      */
-    @Test
     public void testSelectFoodCancel()
     {
         ArrayList<Food> foods = new ArrayList<Food>();
@@ -184,7 +164,6 @@ public class MainTest
     /**
      * Tests selecting food when no foods are available.
      */
-    @Test
     public void testSelectFoodEmptyMenu()
     {
         ArrayList<Food> foods = new ArrayList<Food>();
@@ -200,7 +179,6 @@ public class MainTest
     /**
      * Tests removing a food from an order.
      */
-    @Test
     public void testRemoveFood()
     {
         Order order = new Order();
@@ -221,7 +199,6 @@ public class MainTest
     /**
      * Tests canceling food removal.
      */
-    @Test
     public void testRemoveFoodCancel()
     {
         Order order = new Order();
@@ -242,7 +219,6 @@ public class MainTest
     /**
      * Tests removing food from an empty order.
      */
-    @Test
     public void testRemoveFoodEmptyOrder()
     {
         Order order = new Order();
@@ -257,7 +233,6 @@ public class MainTest
     /**
      * Tests displaying the final order.
      */
-    @Test
     public void testDisplayOrder()
     {
         Customer customer = new Customer("Test User");
@@ -293,7 +268,6 @@ public class MainTest
     /**
      * Tests displaying an empty order.
      */
-    @Test
     public void testDisplayEmptyOrder()
     {
         Customer customer = new Customer("Test User");

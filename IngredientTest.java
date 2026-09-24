@@ -24,11 +24,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests getName.
      */
-    @Test
+
     public void testGetName()
     {
-        setUp();
-
         assertEquals("Cheese", ingredient.getName());
     }
 
@@ -36,11 +34,8 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests dairy allergen detection.
      */
-    @Test
     public void testContainsDairy()
     {
-        setUp();
-
         assertEquals(true, ingredient.containsAllergen("Dairy"));
     }
 
@@ -48,11 +43,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests gluten allergen detection.
      */
-    @Test
     public void testContainsGluten()
     {
         Ingredient bun = new Ingredient("Bun");
-
         assertEquals(true, bun.containsAllergen("Gluten"));
     }
 
@@ -60,11 +53,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests peanut allergen detection.
      */
-    @Test
     public void testContainsPeanuts()
     {
         Ingredient peanuts = new Ingredient("Peanuts");
-
         assertEquals(true, peanuts.containsAllergen("Peanuts"));
     }
 
@@ -72,11 +63,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests tree nut allergen detection.
      */
-    @Test
     public void testContainsTreeNuts()
     {
         Ingredient almonds = new Ingredient("Almonds");
-
         assertEquals(true, almonds.containsAllergen("Tree Nuts"));
     }
 
@@ -84,11 +73,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests egg allergen detection.
      */
-    @Test
     public void testContainsEggs()
     {
         Ingredient egg = new Ingredient("Egg");
-
         assertEquals(true, egg.containsAllergen("Eggs"));
     }
 
@@ -96,11 +83,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests soy allergen detection.
      */
-    @Test
     public void testContainsSoy()
     {
         Ingredient tofu = new Ingredient("Tofu");
-
         assertEquals(true, tofu.containsAllergen("Soy"));
     }
 
@@ -108,11 +93,8 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests when the ingredient does not contain an allergen.
      */
-    @Test
     public void testDoesNotContainAllergen()
     {
-        setUp();
-
         assertEquals(false, ingredient.containsAllergen("Gluten"));
     }
 
@@ -120,11 +102,8 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests an unsupported allergen.
      */
-    @Test
     public void testUnsupportedAllergen()
     {
-        setUp();
-
         assertEquals(false, ingredient.containsAllergen("Shellfish"));
     }
 
@@ -132,11 +111,9 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests case-insensitive ingredient matching.
      */
-    @Test
     public void testIngredientCaseInsensitive()
     {
         Ingredient cheese = new Ingredient("CHEESE");
-
         assertEquals(true, cheese.containsAllergen("Dairy"));
     }
 
@@ -144,11 +121,8 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests case-insensitive allergen matching.
      */
-    @Test
     public void testAllergenCaseInsensitive()
     {
-        setUp();
-
         assertEquals(true, ingredient.containsAllergen("dairy"));
     }
 
@@ -156,11 +130,8 @@ public class IngredientTest extends student.TestCase
     /**
      * Tests a null allergen.
      */
-    @Test
     public void testNullAllergen()
     {
-        setUp();
-
         assertEquals(false, ingredient.containsAllergen(null));
     }
 }

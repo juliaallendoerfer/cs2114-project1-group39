@@ -8,18 +8,12 @@ import java.util.ArrayList;
  * @author Lovesh Kataria
  * @version 2026.09.24
  */
-public class OrderTest
+public class OrderTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Order order;
     private Food burger;
     private Food fries;
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
 
     /**
      * Sets up each test method.
@@ -43,11 +37,8 @@ public class OrderTest
     /**
      * Tests that a new order is empty.
      */
-    @Test
     public void testEmptyOrder()
     {
-        setUp();
-
         assertEquals(0, order.getItems().size());
     }
 
@@ -55,11 +46,8 @@ public class OrderTest
     /**
      * Tests adding a food item to the order.
      */
-    @Test
     public void testAddItem()
     {
-        setUp();
-
         order.addItem(burger);
 
         assertEquals(1, order.getItems().size());
@@ -70,11 +58,8 @@ public class OrderTest
     /**
      * Tests adding multiple food items.
      */
-    @Test
     public void testAddMultipleItems()
     {
-        setUp();
-
         order.addItem(burger);
         order.addItem(fries);
 
@@ -87,11 +72,8 @@ public class OrderTest
     /**
      * Tests that duplicate food items can be added.
      */
-    @Test
     public void testAddDuplicateItems()
     {
-        setUp();
-
         order.addItem(fries);
         order.addItem(fries);
 
@@ -104,11 +86,8 @@ public class OrderTest
     /**
      * Tests that a null food item is not added.
      */
-    @Test
     public void testAddNullItem()
     {
-        setUp();
-
         order.addItem(null);
 
         assertEquals(0, order.getItems().size());
@@ -118,11 +97,8 @@ public class OrderTest
     /**
      * Tests removing a food item from the order.
      */
-    @Test
     public void testRemoveItem()
     {
-        setUp();
-
         order.addItem(burger);
         order.addItem(fries);
         order.removeItem(burger);
@@ -135,11 +111,8 @@ public class OrderTest
     /**
      * Tests removing an item that is not in the order.
      */
-    @Test
     public void testRemoveMissingItem()
     {
-        setUp();
-
         order.addItem(burger);
         order.removeItem(fries);
 
@@ -151,11 +124,8 @@ public class OrderTest
     /**
      * Tests that removing a duplicate removes one occurrence.
      */
-    @Test
     public void testRemoveDuplicateItem()
     {
-        setUp();
-
         order.addItem(fries);
         order.addItem(fries);
         order.removeItem(fries);
@@ -167,11 +137,8 @@ public class OrderTest
     /**
      * Tests the total of an empty order.
      */
-    @Test
     public void testEmptyTotal()
     {
-        setUp();
-
         assertEquals(0.0, order.getTotal(), 0.001);
     }
 
@@ -179,13 +146,9 @@ public class OrderTest
     /**
      * Tests calculating the total of one food item.
      */
-    @Test
     public void testSingleItemTotal()
     {
-        setUp();
-
         order.addItem(burger);
-
         assertEquals(8.50, order.getTotal(), 0.001);
     }
 
@@ -193,11 +156,8 @@ public class OrderTest
     /**
      * Tests calculating the total of multiple food items.
      */
-    @Test
     public void testMultipleItemTotal()
     {
-        setUp();
-
         order.addItem(burger);
         order.addItem(fries);
 
@@ -208,11 +168,8 @@ public class OrderTest
     /**
      * Tests that duplicate items are included in the total.
      */
-    @Test
     public void testDuplicateItemTotal()
     {
-        setUp();
-
         order.addItem(fries);
         order.addItem(fries);
 

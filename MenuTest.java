@@ -6,17 +6,11 @@ import java.util.ArrayList;
 /**
  * Tests the Menu class.
  */
-public class MenuTest
+public class MenuTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Menu menu;
     private Customer customer;
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
 
     /**
      * Sets up each test method.
@@ -31,11 +25,8 @@ public class MenuTest
     /**
      * Tests that a new menu contains all food items.
      */
-    @Test
     public void testGetFoods()
     {
-        setUp();
-
         assertEquals(10, menu.getFoods().size());
         assertEquals("Veggie Burger", menu.getFoods().get(0).getName());
         assertEquals("Milkshake", menu.getFoods().get(9).getName());
@@ -45,11 +36,8 @@ public class MenuTest
     /**
      * Tests adding a food to the menu.
      */
-    @Test
     public void testAddFood()
     {
-        setUp();
-
         Food food = new Food(
             "Test Food",
             5.00,
@@ -65,11 +53,8 @@ public class MenuTest
     /**
      * Tests filtering when the customer has no allergens.
      */
-    @Test
     public void testFilterMenuNoAllergens()
     {
-        setUp();
-
         ArrayList<Food> filteredMenu =
             menu.filterMenu(customer);
 
@@ -80,10 +65,8 @@ public class MenuTest
     /**
      * Tests filtering the menu for a dairy allergy.
      */
-    @Test
     public void testFilterMenuDairy()
     {
-        setUp();
         customer.addAllergen("Dairy");
 
         ArrayList<Food> filteredMenu =
@@ -105,10 +88,8 @@ public class MenuTest
     /**
      * Tests filtering the menu for a gluten allergy.
      */
-    @Test
     public void testFilterMenuGluten()
     {
-        setUp();
         customer.addAllergen("Gluten");
 
         ArrayList<Food> filteredMenu =
@@ -141,10 +122,8 @@ public class MenuTest
     /**
      * Tests filtering the menu with multiple allergens.
      */
-    @Test
     public void testFilterMenuMultipleAllergens()
     {
-        setUp();
         customer.addAllergen("Dairy");
         customer.addAllergen("Gluten");
 
