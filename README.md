@@ -20,6 +20,6 @@ The program collects a customer's name and selected allergens, filters out incom
 - Automatic order total calculation
 - Invalid input handling
 
-## How to Compile and Run
+## How to Run
 
 Compile the project, then run `Main.java`.
