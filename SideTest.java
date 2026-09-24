@@ -5,17 +5,11 @@ import java.util.ArrayList;
 /**
  * Tests the Side class.
  */
-public class SideTest
+public class SideTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Side side;
     private ArrayList<Ingredient> ingredients;
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
 
     /**
      * Sets up each test method.
@@ -34,11 +28,8 @@ public class SideTest
     /**
      * Tests that the side stores its name.
      */
-    @Test
     public void testGetName()
     {
-        setUp();
-
         assertEquals("Fries", side.getName());
     }
 
@@ -46,11 +37,8 @@ public class SideTest
     /**
      * Tests that the side stores its price.
      */
-    @Test
     public void testGetPrice()
     {
-        setUp();
-
         assertEquals(3.00, side.getPrice(), 0.001);
     }
 
@@ -58,11 +46,8 @@ public class SideTest
     /**
      * Tests that the side stores its ingredients.
      */
-    @Test
     public void testGetIngredients()
     {
-        setUp();
-
         assertEquals(ingredients, side.getIngredients());
         assertEquals(3, side.getIngredients().size());
     }
@@ -71,11 +56,8 @@ public class SideTest
     /**
      * Tests that a side is a Food object.
      */
-    @Test
     public void testSideIsFood()
     {
-        setUp();
-
         assertEquals(true, side instanceof Food);
     }
 
@@ -83,11 +65,8 @@ public class SideTest
     /**
      * Tests the side string representation.
      */
-    @Test
     public void testToString()
     {
-        setUp();
-
         assertEquals(
             "Side: Fries, Price: $3.0",
             side.toString());
@@ -97,11 +76,8 @@ public class SideTest
     /**
      * Tests a side with an empty ingredient list.
      */
-    @Test
     public void testEmptyIngredients()
     {
-        setUp();
-
         Side emptySide = new Side(
             "Empty Side",
             1.00,
@@ -117,11 +93,8 @@ public class SideTest
     /**
      * Tests allergen checking inherited from Food.
      */
-    @Test
     public void testDoesNotContainAllergen()
     {
-        setUp();
-
         assertEquals(false, side.containsAllergen("Gluten"));
     }
 
@@ -129,13 +102,9 @@ public class SideTest
     /**
      * Tests allergen checking with an allergen-containing side.
      */
-    @Test
     public void testContainsAllergen()
     {
-        setUp();
-
         ingredients.add(new Ingredient("Wheat Flour"));
-
         assertEquals(true, side.containsAllergen("Gluten"));
     }
 }
