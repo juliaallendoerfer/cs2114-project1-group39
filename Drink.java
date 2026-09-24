@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Represents a drink item of type Food.
  */

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Represents a burger item of type Food.
  */

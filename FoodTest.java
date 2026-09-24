@@ -62,4 +62,69 @@ public class FoodTest {
 
 		assertEquals("Pizza", food.toString());
 	}
+
+	/**
+	 * Tests containsAllergen when an ingredient contains
+	 * the specified allergen.
+	 */
+	@Test
+	public void testContainsAllergen()
+	{
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		ingredients.add(new Ingredient("Cheese"));
+
+		Food food = new Food("Cheese Burger", 8.50, ingredients);
+
+		assertEquals(true, food.containsAllergen("Dairy"));
+	}
+
+
+	/**
+	 * Tests containsAllergen when none of the ingredients
+	 * contain the specified allergen.
+	 */
+	@Test
+	public void testDoesNotContainAllergen()
+	{
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		ingredients.add(new Ingredient("Cheese"));
+
+		Food food = new Food("Cheese Burger", 8.50, ingredients);
+
+		assertEquals(false, food.containsAllergen("Gluten"));
+	}
+
+
+	/**
+	 * Tests containsAllergen with multiple ingredients.
+	 */
+	@Test
+	public void testContainsAllergenMultipleIngredients()
+	{
+		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+		ingredients.add(new Ingredient("Lettuce"));
+		ingredients.add(new Ingredient("Bun"));
+		ingredients.add(new Ingredient("Cheese"));
+
+		Food food = new Food("Cheese Burger", 8.50, ingredients);
+
+		assertEquals(true, food.containsAllergen("Gluten"));
+		assertEquals(true, food.containsAllergen("Dairy"));
+		assertEquals(false, food.containsAllergen("Peanuts"));
+	}
+
+
+	/**
+	 * Tests containsAllergen when the food has no ingredients.
+	 */
+	@Test
+	public void testContainsAllergenEmptyIngredients()
+	{
+		Food food = new Food(
+			"Water",
+			2.00,
+			new ArrayList<Ingredient>());
+
+		assertEquals(false, food.containsAllergen("Dairy"));
+	}
 }

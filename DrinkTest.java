@@ -21,9 +21,6 @@ public class DrinkTest {
 
     /**
      * Creates a fresh drink and ingredient list before each test.
-     *
-     * <p>ASSUMPTION: {@code Ingredient} has a constructor that takes a name.
-     * Adjust this to match your Ingredient class.</p>
      */
     @BeforeEach
     void setUp() {
@@ -52,9 +49,6 @@ public class DrinkTest {
 
     /**
      * Verifies that the constructor stores the drink's ingredients.
-     *
-     * <p>ASSUMPTION: {@code Food} exposes {@code getIngredients()}.
-     * Remove this test if it does not.</p>
      */
     @Test
     void constructor_setsIngredients() {

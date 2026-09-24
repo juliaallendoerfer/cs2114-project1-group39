@@ -22,8 +22,6 @@ public class BurgerTest {
     /**
      * Creates a fresh burger and ingredient list before each test.
      *
-     * <p>ASSUMPTION: {@code Ingredient} has a constructor that takes a name.
-     * Adjust this to match your Ingredient class.</p>
      */
     @BeforeEach
     void setUp() {
@@ -54,8 +52,6 @@ public class BurgerTest {
     /**
      * Verifies that the constructor stores the burger's ingredients.
      *
-     * <p>ASSUMPTION: {@code Food} exposes {@code getIngredients()}.
-     * Remove this test if it does not.</p>
      */
     @Test
     void constructor_setsIngredients() {

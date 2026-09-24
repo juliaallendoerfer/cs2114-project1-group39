@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Represents a side item of type Food.
  */
