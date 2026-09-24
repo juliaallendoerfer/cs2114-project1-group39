@@ -5,11 +5,11 @@ import java.util.ArrayList;
  */
 public class Food{
     /** The name of the food item. */
-    String name;
+    private String name;
     /** The price of the food item. */
-    double price;
+    private double price;
     /** The ingredients contained in the food item. */
-    ArrayList<Ingredient> ingredients;
+    private ArrayList<Ingredient> ingredients;
 
     /**
      * Creates a food item with the specified details.
