@@ -54,7 +54,20 @@ public class Customer
      */
     public boolean hasAllergen(String allergen)
     {
-        return allergens.contains(allergen);
+        if (allergen == null)
+        {
+            return false;
+        }
+
+        for (String customerAllergen : allergens)
+        {
+            if (customerAllergen.equalsIgnoreCase(allergen))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

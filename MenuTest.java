@@ -1,71 +1,197 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class MenuTest extends student.TestCase {
-
+/**
+ * Tests the Menu class.
+ */
+public class MenuTest
+{
+    // ~ Fields ................................................................
     private Menu menu;
     private Customer customer;
-    private Food veggieBurger;
-    private Food cheeseBurger;
 
-    @BeforeEach
-    public void setUp() {
+
+    // ~ Constructors ..........................................................
+
+
+    // ~ Public Methods ........................................................
+
+    /**
+     * Sets up each test method.
+     */
+    public void setUp()
+    {
         menu = new Menu();
-        
-        customer = new Customer("John Doe"); 
-        
+        customer = new Customer("Test User");
+    }
+
+
+    /**
+     * Tests that a new menu contains all food items.
+     */
+    @Test
+    public void testGetFoods()
+    {
+        setUp();
+
+        assertEquals(10, menu.getFoods().size());
+        assertEquals("Veggie Burger", menu.getFoods().get(0).getName());
+        assertEquals("Milkshake", menu.getFoods().get(9).getName());
+    }
+
+
+    /**
+     * Tests adding a food to the menu.
+     */
+    @Test
+    public void testAddFood()
+    {
+        setUp();
+
+        Food food = new Food(
+            "Test Food",
+            5.00,
+            new ArrayList<Ingredient>());
+
+        menu.addFood(food);
+
+        assertEquals(11, menu.getFoods().size());
+        assertEquals(true, menu.getFoods().contains(food));
+    }
+
+
+    /**
+     * Tests filtering when the customer has no allergens.
+     */
+    @Test
+    public void testFilterMenuNoAllergens()
+    {
+        setUp();
+
+        ArrayList<Food> filteredMenu =
+            menu.filterMenu(customer);
+
+        assertEquals(10, filteredMenu.size());
+    }
+
+
+    /**
+     * Tests filtering the menu for a dairy allergy.
+     */
+    @Test
+    public void testFilterMenuDairy()
+    {
+        setUp();
         customer.addAllergen("Dairy");
 
-        veggieBurger = new Food("Veggie Burger", 8.99); 
-        cheeseBurger = new Food("Cheese Burger", 9.99);
-        
-        Ingredient bun = new Ingredient("Bun");
-        bun.addAllergen("Gluten");
-        
-        Ingredient cheese = new Ingredient("Cheese");
-        cheese.addAllergen("Dairy");
-        
-        veggieBurger.addIngredient(bun);
-        cheeseBurger.addIngredient(bun);
-        cheeseBurger.addIngredient(cheese);
+        ArrayList<Food> filteredMenu =
+            menu.filterMenu(customer);
+
+        assertEquals(7, filteredMenu.size());
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Cheese Burger"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Caesar Salad"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Milkshake"));
     }
 
-    @Test
-    public void testAddAndGetFoods() {
-        menu.addFood(veggieBurger);
-        menu.addFood(cheeseBurger);
-        
-        ArrayList<Food> foods = menu.getFoods();
-        
-        assertEquals(2, foods.size(), "Menu should contain 2 foods.");
-        assertTrue(foods.contains(veggieBurger), "Menu should contain Veggie Burger.");
-        assertTrue(foods.contains(cheeseBurger), "Menu should contain Cheese Burger.");
-    }
 
+    /**
+     * Tests filtering the menu for a gluten allergy.
+     */
     @Test
-    public void testFilterMenu() {
-        menu.addFood(veggieBurger);
-        menu.addFood(cheeseBurger);
-
-        ArrayList<Food> filteredMenu = menu.filterMenu(customer);
-        
-        assertEquals(1, filteredMenu.size(), "Filtered menu should only contain 1 safe food.");
-        assertTrue(filteredMenu.contains(veggieBurger), "Filtered menu should contain the safe Veggie Burger.");
-        assertFalse(filteredMenu.contains(cheeseBurger), "Filtered menu should NOT contain the unsafe Cheese Burger.");
-    }
-    
-    @Test
-    public void testFilterMenuMultipleAllergens() {
-        menu.addFood(veggieBurger);
-        menu.addFood(cheeseBurger);
-        
+    public void testFilterMenuGluten()
+    {
+        setUp();
         customer.addAllergen("Gluten");
-        
-        ArrayList<Food> filteredMenu = menu.filterMenu(customer);
-        
-        assertEquals(0, filteredMenu.size(), "Filtered menu should be empty since all foods contain an allergen.");
+
+        ArrayList<Food> filteredMenu =
+            menu.filterMenu(customer);
+
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Veggie Burger"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Chicken Burger"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Cheese Burger"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Onion Rings"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Caesar Salad"));
+
+        assertEquals(
+            true,
+            containsFood(
+                filteredMenu,
+                "Gluten-Free Bun Burger"));
+    }
+
+
+    /**
+     * Tests filtering the menu with multiple allergens.
+     */
+    @Test
+    public void testFilterMenuMultipleAllergens()
+    {
+        setUp();
+        customer.addAllergen("Dairy");
+        customer.addAllergen("Gluten");
+
+        ArrayList<Food> filteredMenu =
+            menu.filterMenu(customer);
+
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Cheese Burger"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Milkshake"));
+        assertEquals(
+            false,
+            containsFood(filteredMenu, "Onion Rings"));
+
+        assertEquals(
+            true,
+            containsFood(
+                filteredMenu,
+                "Gluten-Free Bun Burger"));
+        assertEquals(
+            true,
+            containsFood(filteredMenu, "Fries"));
+        assertEquals(
+            true,
+            containsFood(filteredMenu, "Water"));
+    }
+
+
+    /**
+     * Checks whether a list contains a food with the specified name.
+     *
+     * @param foods the foods to search
+     * @param name the food name to find
+     * @return true if the food is present; false otherwise
+     */
+    private boolean containsFood(ArrayList<Food> foods, String name)
+    {
+        for (Food food : foods)
+        {
+            if (food.getName().equals(name))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

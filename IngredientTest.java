@@ -34,6 +34,7 @@ public class IngredientTest
     public void testGetName()
     {
         setUp();
+
         assertEquals("Cheese", ingredient.getName());
     }
 
@@ -45,6 +46,7 @@ public class IngredientTest
     public void testContainsDairy()
     {
         setUp();
+
         assertEquals(true, ingredient.containsAllergen("Dairy"));
     }
 
@@ -56,6 +58,7 @@ public class IngredientTest
     public void testContainsGluten()
     {
         Ingredient bun = new Ingredient("Bun");
+
         assertEquals(true, bun.containsAllergen("Gluten"));
     }
 
@@ -67,6 +70,7 @@ public class IngredientTest
     public void testContainsPeanuts()
     {
         Ingredient peanuts = new Ingredient("Peanuts");
+
         assertEquals(true, peanuts.containsAllergen("Peanuts"));
     }
 
@@ -78,6 +82,7 @@ public class IngredientTest
     public void testContainsTreeNuts()
     {
         Ingredient almonds = new Ingredient("Almonds");
+
         assertEquals(true, almonds.containsAllergen("Tree Nuts"));
     }
 
@@ -89,6 +94,7 @@ public class IngredientTest
     public void testContainsEggs()
     {
         Ingredient egg = new Ingredient("Egg");
+
         assertEquals(true, egg.containsAllergen("Eggs"));
     }
 
@@ -100,6 +106,7 @@ public class IngredientTest
     public void testContainsSoy()
     {
         Ingredient tofu = new Ingredient("Tofu");
+
         assertEquals(true, tofu.containsAllergen("Soy"));
     }
 
@@ -111,6 +118,7 @@ public class IngredientTest
     public void testDoesNotContainAllergen()
     {
         setUp();
+
         assertEquals(false, ingredient.containsAllergen("Gluten"));
     }
 
@@ -122,18 +130,32 @@ public class IngredientTest
     public void testUnsupportedAllergen()
     {
         setUp();
+
         assertEquals(false, ingredient.containsAllergen("Shellfish"));
     }
 
 
     /**
-     * Tests case-insensitive allergen checking.
+     * Tests case-insensitive ingredient matching.
      */
     @Test
-    public void testCaseInsensitive()
+    public void testIngredientCaseInsensitive()
     {
         Ingredient cheese = new Ingredient("CHEESE");
-        assertEquals(true, cheese.containsAllergen("dairy"));
+
+        assertEquals(true, cheese.containsAllergen("Dairy"));
+    }
+
+
+    /**
+     * Tests case-insensitive allergen matching.
+     */
+    @Test
+    public void testAllergenCaseInsensitive()
+    {
+        setUp();
+
+        assertEquals(true, ingredient.containsAllergen("dairy"));
     }
 
 
@@ -144,6 +166,7 @@ public class IngredientTest
     public void testNullAllergen()
     {
         setUp();
+
         assertEquals(false, ingredient.containsAllergen(null));
     }
 }

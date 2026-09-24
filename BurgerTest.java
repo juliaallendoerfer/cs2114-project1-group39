@@ -1,31 +1,28 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import static org.junit.Assert.*;
+import org.junit.Test;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Unit tests for the {@link Burger} class.
- *
- * <p>Verifies that a Burger is constructed correctly, inherits from
- * {@link Food}, and produces the expected string representation.</p>
+ * Tests the Burger class.
  */
-public class BurgerTest {
-
-    /** The list of ingredients used to build the test burger. */
+public class BurgerTest
+{
+    // ~ Fields ................................................................
+    private Burger burger;
     private ArrayList<Ingredient> ingredients;
 
-    /** The burger instance under test. */
-    private Burger burger;
+
+    // ~ Constructors ..........................................................
+
+
+    // ~ Public Methods ........................................................
 
     /**
-     * Creates a fresh burger and ingredient list before each test.
-     *
+     * Sets up each test method.
      */
-    @BeforeEach
-    void setUp() {
-        ingredients = new ArrayList<>();
+    public void setUp()
+    {
+        ingredients = new ArrayList<Ingredient>();
         ingredients.add(new Ingredient("Beef Patty"));
         ingredients.add(new Ingredient("Cheese"));
         ingredients.add(new Ingredient("Lettuce"));
@@ -33,82 +30,98 @@ public class BurgerTest {
         burger = new Burger("Cheeseburger", 8.50, ingredients);
     }
 
+
     /**
-     * Verifies that the constructor stores the burger's name.
+     * Tests that the burger stores its name.
      */
     @Test
-    void constructor_setsName() {
+    public void testGetName()
+    {
+        setUp();
+
         assertEquals("Cheeseburger", burger.getName());
     }
 
-    /**
-     * Verifies that the constructor stores the burger's price.
-     */
-    @Test
-    void constructor_setsPrice() {
-        assertEquals(8.50, burger.getPrice(), 0.0001);
-    }
 
     /**
-     * Verifies that the constructor stores the burger's ingredients.
-     *
+     * Tests that the burger stores its price.
      */
     @Test
-    void constructor_setsIngredients() {
+    public void testGetPrice()
+    {
+        setUp();
+
+        assertEquals(8.50, burger.getPrice(), 0.001);
+    }
+
+
+    /**
+     * Tests that the burger stores its ingredients.
+     */
+    @Test
+    public void testGetIngredients()
+    {
+        setUp();
+
         assertEquals(ingredients, burger.getIngredients());
         assertEquals(3, burger.getIngredients().size());
     }
 
-    /**
-     * Verifies that a burger can be created with an empty ingredient list.
-     */
-    @Test
-    void constructor_allowsEmptyIngredientList() {
-        Burger plain = new Burger("Plain Bun", 1.0, new ArrayList<>());
-        assertEquals("Plain Bun", plain.getName());
-        assertEquals(1.0, plain.getPrice(), 0.0001);
-    }
 
     /**
-     * Verifies that a Burger is a subtype of {@link Food}.
+     * Tests that a burger is a Food object.
      */
     @Test
-    void isInstanceOfFood() {
-        assertTrue(burger instanceof Food);
+    public void testBurgerIsFood()
+    {
+        setUp();
+
+        assertEquals(true, burger instanceof Food);
     }
 
-    /**
-     * Verifies that {@code toString()} returns the name and price
-     * in the expected format.
-     */
-    @Test
-    void toString_returnsFormattedNameAndPrice() {
-        assertEquals("Burger: Cheeseburger, Price: $8.5", burger.toString());
-    }
 
     /**
-     * Verifies {@code toString()} output for a whole-number price.
+     * Tests the burger string representation.
      */
     @Test
-    void toString_wholeNumberPrice() {
-        Burger basic = new Burger("Hamburger", 6.0, new ArrayList<>());
-        assertEquals("Burger: Hamburger, Price: $6.0", basic.toString());
+    public void testToString()
+    {
+        setUp();
+
+        assertEquals(
+            "Burger: Cheeseburger, Price: $8.5",
+            burger.toString());
     }
 
-    /**
-     * Verifies {@code toString()} output for a price of zero.
-     */
-    @Test
-    void toString_zeroPrice() {
-        Burger free = new Burger("Free Sample", 0.0, new ArrayList<>());
-        assertEquals("Burger: Free Sample, Price: $0.0", free.toString());
-    }
 
     /**
-     * Verifies that {@code toString()} begins with the "Burger: " prefix.
+     * Tests a burger with an empty ingredient list.
      */
     @Test
-    void toString_startsWithBurgerPrefix() {
-        assertTrue(burger.toString().startsWith("Burger: "));
+    public void testEmptyIngredients()
+    {
+        setUp();
+        Burger plain = new Burger(
+            "Plain Burger",
+            6.00,
+            new ArrayList<Ingredient>());
+
+        assertEquals(0, plain.getIngredients().size());
+        assertEquals(
+            "Burger: Plain Burger, Price: $6.0",
+            plain.toString());
+    }
+
+
+    /**
+     * Tests allergen checking inherited from Food.
+     */
+    @Test
+    public void testContainsAllergen()
+    {
+        setUp();
+
+        assertEquals(true, burger.containsAllergen("Dairy"));
+        assertEquals(false, burger.containsAllergen("Gluten"));
     }
 }

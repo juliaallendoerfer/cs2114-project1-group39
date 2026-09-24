@@ -1,111 +1,138 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import static org.junit.Assert.*;
+import org.junit.Test;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Unit tests for the {@link Drink} class.
- *
- * <p>Verifies that a Drink is constructed correctly, inherits from
- * {@link Food}, and produces the expected string representation.</p>
+ * Tests the Drink class.
  */
-public class DrinkTest {
-
-    /** The list of ingredients used to build the test drink. */
+public class DrinkTest
+{
+    // ~ Fields ................................................................
+    private Drink drink;
     private ArrayList<Ingredient> ingredients;
 
-    /** The drink instance under test. */
-    private Drink drink;
+
+    // ~ Constructors ..........................................................
+
+
+    // ~ Public Methods ........................................................
 
     /**
-     * Creates a fresh drink and ingredient list before each test.
+     * Sets up each test method.
      */
-    @BeforeEach
-    void setUp() {
-        ingredients = new ArrayList<>();
+    public void setUp()
+    {
+        ingredients = new ArrayList<Ingredient>();
         ingredients.add(new Ingredient("Water"));
-        ingredients.add(new Ingredient("Lemon"));
+        ingredients.add(new Ingredient("Sugar"));
 
-        drink = new Drink("Lemonade", 3.50, ingredients);
+        drink = new Drink("Soda", 2.00, ingredients);
     }
 
-    /**
-     * Verifies that the constructor stores the drink's name.
-     */
-    @Test
-    void constructor_setsName() {
-        assertEquals("Lemonade", drink.getName());
-    }
 
     /**
-     * Verifies that the constructor stores the drink's price.
+     * Tests that the drink stores its name.
      */
     @Test
-    void constructor_setsPrice() {
-        assertEquals(3.50, drink.getPrice(), 0.0001);
+    public void testGetName()
+    {
+        setUp();
+
+        assertEquals("Soda", drink.getName());
     }
 
+
     /**
-     * Verifies that the constructor stores the drink's ingredients.
+     * Tests that the drink stores its price.
      */
     @Test
-    void constructor_setsIngredients() {
+    public void testGetPrice()
+    {
+        setUp();
+
+        assertEquals(2.00, drink.getPrice(), 0.001);
+    }
+
+
+    /**
+     * Tests that the drink stores its ingredients.
+     */
+    @Test
+    public void testGetIngredients()
+    {
+        setUp();
+
         assertEquals(ingredients, drink.getIngredients());
         assertEquals(2, drink.getIngredients().size());
     }
 
-    /**
-     * Verifies that a drink can be created with an empty ingredient list.
-     */
-    @Test
-    void constructor_allowsEmptyIngredientList() {
-        Drink water = new Drink("Water", 0.0, new ArrayList<>());
-        assertEquals("Water", water.getName());
-        assertEquals(0.0, water.getPrice(), 0.0001);
-    }
 
     /**
-     * Verifies that a Drink is a subtype of {@link Food}.
+     * Tests that a drink is a Food object.
      */
     @Test
-    void isInstanceOfFood() {
-        assertTrue(drink instanceof Food);
+    public void testDrinkIsFood()
+    {
+        setUp();
+
+        assertEquals(true, drink instanceof Food);
     }
 
-    /**
-     * Verifies that {@code toString()} returns the name and price
-     * in the expected format.
-     */
-    @Test
-    void toString_returnsFormattedNameAndPrice() {
-        assertEquals("Drink: Lemonade, Price: $3.5", drink.toString());
-    }
 
     /**
-     * Verifies {@code toString()} output for a whole-number price.
+     * Tests the drink string representation.
      */
     @Test
-    void toString_wholeNumberPrice() {
-        Drink soda = new Drink("Soda", 2.0, new ArrayList<>());
-        assertEquals("Drink: Soda, Price: $2.0", soda.toString());
+    public void testToString()
+    {
+        setUp();
+
+        assertEquals(
+            "Drink: Soda, Price: $2.0",
+            drink.toString());
     }
 
-    /**
-     * Verifies {@code toString()} output for a price of zero.
-     */
-    @Test
-    void toString_zeroPrice() {
-        Drink water = new Drink("Water", 0.0, new ArrayList<>());
-        assertEquals("Drink: Water, Price: $0.0", water.toString());
-    }
 
     /**
-     * Verifies that {@code toString()} begins with the "Drink: " prefix.
+     * Tests a drink with an empty ingredient list.
      */
     @Test
-    void toString_startsWithDrinkPrefix() {
-        assertTrue(drink.toString().startsWith("Drink: "));
+    public void testEmptyIngredients()
+    {
+        setUp();
+        Drink water = new Drink(
+            "Water",
+            1.50,
+            new ArrayList<Ingredient>());
+
+        assertEquals(0, water.getIngredients().size());
+        assertEquals(
+            "Drink: Water, Price: $1.5",
+            water.toString());
+    }
+
+
+    /**
+     * Tests allergen checking inherited from Food.
+     */
+    @Test
+    public void testContainsAllergen()
+    {
+        setUp();
+
+        assertEquals(false, drink.containsAllergen("Dairy"));
+    }
+
+
+    /**
+     * Tests allergen checking with an allergen-containing drink.
+     */
+    @Test
+    public void testContainsAllergenDairy()
+    {
+        setUp();
+        ingredients.add(new Ingredient("Milk"));
+
+        assertEquals(true, drink.containsAllergen("Dairy"));
     }
 }

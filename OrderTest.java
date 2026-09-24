@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
+import java.util.ArrayList;
 
 /**
  * Tests the Order class.
@@ -30,12 +31,12 @@ public class OrderTest
         burger = new Food(
             "Cheese Burger",
             8.50,
-            new java.util.ArrayList<Ingredient>());
+            new ArrayList<Ingredient>());
 
         fries = new Food(
             "Fries",
             3.00,
-            new java.util.ArrayList<Ingredient>());
+            new ArrayList<Ingredient>());
     }
 
 

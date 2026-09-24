@@ -63,7 +63,7 @@ public class Food{
     /**
      * Returns the food item's ingredients.
      *
-     * @return all ingredients in string form
+     * @return the food item's ingredients
      */
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
