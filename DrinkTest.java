@@ -5,17 +5,11 @@ import java.util.ArrayList;
 /**
  * Tests the Drink class.
  */
-public class DrinkTest
+public class DrinkTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Drink drink;
     private ArrayList<Ingredient> ingredients;
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
 
     /**
      * Sets up each test method.
@@ -33,11 +27,8 @@ public class DrinkTest
     /**
      * Tests that the drink stores its name.
      */
-    @Test
     public void testGetName()
     {
-        setUp();
-
         assertEquals("Soda", drink.getName());
     }
 
@@ -45,11 +36,8 @@ public class DrinkTest
     /**
      * Tests that the drink stores its price.
      */
-    @Test
     public void testGetPrice()
     {
-        setUp();
-
         assertEquals(2.00, drink.getPrice(), 0.001);
     }
 
@@ -57,11 +45,8 @@ public class DrinkTest
     /**
      * Tests that the drink stores its ingredients.
      */
-    @Test
     public void testGetIngredients()
     {
-        setUp();
-
         assertEquals(ingredients, drink.getIngredients());
         assertEquals(2, drink.getIngredients().size());
     }
@@ -70,11 +55,8 @@ public class DrinkTest
     /**
      * Tests that a drink is a Food object.
      */
-    @Test
     public void testDrinkIsFood()
     {
-        setUp();
-
         assertEquals(true, drink instanceof Food);
     }
 
@@ -82,11 +64,8 @@ public class DrinkTest
     /**
      * Tests the drink string representation.
      */
-    @Test
     public void testToString()
     {
-        setUp();
-
         assertEquals(
             "Drink: Soda, Price: $2.0",
             drink.toString());
@@ -96,10 +75,8 @@ public class DrinkTest
     /**
      * Tests a drink with an empty ingredient list.
      */
-    @Test
     public void testEmptyIngredients()
     {
-        setUp();
         Drink water = new Drink(
             "Water",
             1.50,
@@ -115,11 +92,8 @@ public class DrinkTest
     /**
      * Tests allergen checking inherited from Food.
      */
-    @Test
     public void testContainsAllergen()
     {
-        setUp();
-
         assertEquals(false, drink.containsAllergen("Dairy"));
     }
 
@@ -127,12 +101,9 @@ public class DrinkTest
     /**
      * Tests allergen checking with an allergen-containing drink.
      */
-    @Test
     public void testContainsAllergenDairy()
     {
-        setUp();
         ingredients.add(new Ingredient("Milk"));
-
         assertEquals(true, drink.containsAllergen("Dairy"));
     }
 }

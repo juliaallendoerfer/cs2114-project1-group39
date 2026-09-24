@@ -7,16 +7,10 @@ import org.junit.Test;
  * @author Lovesh Kataria
  * @version 2026.09.24
  */
-public class IngredientTest
+public class IngredientTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Ingredient ingredient;
-
-
-    // ~ Constructors ..........................................................
-
-
-    // ~ Public Methods ........................................................
 
     /**
      * Sets up each test method.

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Tests the Food class.
  */
-public class FoodTest
+public class FoodTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Food food;
@@ -30,11 +30,8 @@ public class FoodTest
     /**
      * Tests getName.
      */
-    @Test
     public void testGetName()
     {
-        setUp();
-
         assertEquals("Pizza", food.getName());
     }
 
@@ -42,12 +39,9 @@ public class FoodTest
     /**
      * Tests setName.
      */
-    @Test
     public void testSetName()
     {
-        setUp();
         food.setName("Pasta");
-
         assertEquals("Pasta", food.getName());
     }
 
@@ -55,11 +49,8 @@ public class FoodTest
     /**
      * Tests getPrice.
      */
-    @Test
     public void testGetPrice()
     {
-        setUp();
-
         assertEquals(12.50, food.getPrice(), 0.001);
     }
 
@@ -67,12 +58,9 @@ public class FoodTest
     /**
      * Tests setPrice.
      */
-    @Test
     public void testSetPrice()
     {
-        setUp();
         food.setPrice(10.00);
-
         assertEquals(10.00, food.getPrice(), 0.001);
     }
 
@@ -80,11 +68,8 @@ public class FoodTest
     /**
      * Tests getIngredients.
      */
-    @Test
     public void testGetIngredients()
     {
-        setUp();
-
         assertEquals(ingredients, food.getIngredients());
     }
 
@@ -92,16 +77,12 @@ public class FoodTest
     /**
      * Tests setIngredients.
      */
-    @Test
     public void testSetIngredients()
     {
-        setUp();
         ArrayList<Ingredient> newIngredients =
             new ArrayList<Ingredient>();
         newIngredients.add(new Ingredient("Cheese"));
-
         food.setIngredients(newIngredients);
-
         assertEquals(newIngredients, food.getIngredients());
     }
 
@@ -109,11 +90,8 @@ public class FoodTest
     /**
      * Tests toString.
      */
-    @Test
     public void testToString()
     {
-        setUp();
-
         assertEquals("Pizza", food.toString());
     }
 
@@ -122,12 +100,9 @@ public class FoodTest
      * Tests containsAllergen when an ingredient contains
      * the specified allergen.
      */
-    @Test
     public void testContainsAllergen()
     {
-        setUp();
         ingredients.add(new Ingredient("Cheese"));
-
         assertEquals(true, food.containsAllergen("Dairy"));
     }
 
@@ -136,12 +111,9 @@ public class FoodTest
      * Tests containsAllergen when none of the ingredients
      * contain the specified allergen.
      */
-    @Test
     public void testDoesNotContainAllergen()
     {
-        setUp();
         ingredients.add(new Ingredient("Cheese"));
-
         assertEquals(false, food.containsAllergen("Gluten"));
     }
 
@@ -149,10 +121,8 @@ public class FoodTest
     /**
      * Tests containsAllergen with multiple ingredients.
      */
-    @Test
     public void testContainsAllergenMultipleIngredients()
     {
-        setUp();
         ingredients.add(new Ingredient("Lettuce"));
         ingredients.add(new Ingredient("Bun"));
         ingredients.add(new Ingredient("Cheese"));
@@ -166,11 +136,8 @@ public class FoodTest
     /**
      * Tests containsAllergen when the food has no ingredients.
      */
-    @Test
     public void testContainsAllergenEmptyIngredients()
     {
-        setUp();
-
         assertEquals(false, food.containsAllergen("Dairy"));
     }
 
@@ -178,12 +145,9 @@ public class FoodTest
     /**
      * Tests containsAllergen with a null allergen.
      */
-    @Test
     public void testContainsNullAllergen()
     {
-        setUp();
         ingredients.add(new Ingredient("Cheese"));
-
         assertEquals(false, food.containsAllergen(null));
     }
 }

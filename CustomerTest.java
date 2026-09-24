@@ -7,7 +7,7 @@ import org.junit.Test;
  * @author Lovesh Kataria
  * @version 2026.09.24
  */
-public class CustomerTest
+public class CustomerTest extends student.TestCase
 {
     // ~ Fields ................................................................
     private Customer customer;
