@@ -5,9 +5,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // 1. Create Menu and populate it (assuming Menu class and Food subclasses exist)
+        // 1. Create the menu with all food items
         Menu menu = new Menu();
-        // (Initialization of foods would go here)
         
         // 2. Collect Customer Info
         String name = getCustomerName(scanner);
@@ -30,7 +29,11 @@ public class Main {
             } else if (choice == 2) {
                 removeFood(scanner, order);
             } else {
-                ordering = false;
+                if (order.getItems().isEmpty()) {
+                    System.out.println("Your order is empty. Please add at least one item before finishing.");
+                } else {
+                    ordering = false;
+                }
             }
         }
         
@@ -45,10 +48,11 @@ public class Main {
             System.out.print("Enter your name: ");
             name = scanner.nextLine().trim();
             
-            if (!name.isEmpty() && name.length() <= 100 && name.matches("^[a-zA-Z\\s]+$")) {
+            if (!name.isEmpty() && name.length() <= 100
+                && name.matches("^[a-zA-Z\\s'-]+$")) {
                 break;
             }
-            System.out.println("Invalid input. Name must be 1-100 characters and contain only letters and spaces.");
+            System.out.println("Invalid input. Name must be 1-100 characters and contain only letters, spaces, hyphens, or apostrophes.");
         }
         return name;
     }
@@ -89,17 +93,11 @@ public class Main {
 
     public static void displayMenu(ArrayList<Food> foods) {
         System.out.println("\n--- MENU ---");
-        int itemNumber = 1;
-        
-        // This assumes Food subclasses named Burger, Side, and Drink exist in the project to facilitate sorting by type.
-        String[] categories = {"Burger", "Side", "Drink"};
-        
-        for (String category : categories) {
-            for (Food food : foods) {
-                if (food.getClass().getSimpleName().contains(category)) {
-                    System.out.println(itemNumber + ". " + food.getName() + " - $" + String.format("%.2f", food.getPrice()));
-                }
-            }
+        for (int i = 0; i < foods.size(); i++) {
+            Food food = foods.get(i);
+            System.out.println(
+                (i + 1) + ". " + food.getName()
+                + " - $" + String.format("%.2f", food.getPrice()));
         }
     }
 
@@ -115,9 +113,6 @@ public class Main {
         int choice = getValidChoice(scanner, 0, foods.size());
         
         if (choice > 0) {
-            // Note: Since displayMenu visually sorts by class name, retrieving by choice-1 might require 
-            // mapping visual index back to the ArrayList index. For simplicity in this implementation, 
-            // we assume the ArrayList is already ordered (Burgers -> Sides -> Drinks) before being passed in.
             Food selectedFood = foods.get(choice - 1);
             order.addItem(selectedFood);
             System.out.println(selectedFood.getName() + " added to your order.");
