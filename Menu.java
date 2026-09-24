@@ -17,7 +17,6 @@ public class Menu {
         ));
         
         Burger veggieBurger = new Burger("Veggie Burger", 7.50, veggieBurgerIngredients);
-
         foods.add(veggieBurger);
 
         ArrayList<Ingredient> chickenBurgerIngredients =
@@ -31,7 +30,6 @@ public class Menu {
 
         Burger chickenBurger =
             new Burger("Chicken Burger", 8.50, chickenBurgerIngredients);
-
         foods.add(chickenBurger);
 
         ArrayList<Ingredient> cheeseBurgerIngredients =
@@ -46,7 +44,6 @@ public class Menu {
 
         Burger cheeseBurger =
             new Burger("Cheese Burger", 9.00, cheeseBurgerIngredients);
-
         foods.add(cheeseBurger);
 
         ArrayList<Ingredient> glutenFreeBurgerIngredients =
@@ -60,7 +57,6 @@ public class Menu {
 
         Burger glutenFreeBurger =
             new Burger("Gluten-Free Bun Burger", 9.50, glutenFreeBurgerIngredients);
-
         foods.add(glutenFreeBurger);
 
         ArrayList<Ingredient> friesIngredients =
@@ -72,7 +68,6 @@ public class Menu {
 
         Side fries =
             new Side("Fries", 3.00, friesIngredients);
-
         foods.add(fries);
 
         ArrayList<Ingredient> onionRingsIngredients =
@@ -86,7 +81,6 @@ public class Menu {
 
         Side onionRings =
             new Side("Onion Rings", 3.50, onionRingsIngredients);
-
         foods.add(onionRings);
 
         ArrayList<Ingredient> caesarSaladIngredients =
@@ -99,7 +93,6 @@ public class Menu {
 
         Side caesarSalad =
             new Side("Caesar Salad", 4.50, caesarSaladIngredients);
-
         foods.add(caesarSalad);
 
         ArrayList<Ingredient> sodaIngredients =
@@ -110,7 +103,6 @@ public class Menu {
 
         Drink soda =
             new Drink("Soda", 2.00, sodaIngredients);
-
         foods.add(soda);
 
         ArrayList<Ingredient> waterIngredients =
@@ -120,7 +112,6 @@ public class Menu {
 
         Drink water =
             new Drink("Water", 1.50, waterIngredients);
-
         foods.add(water);
 
         ArrayList<Ingredient> milkshakeIngredients =
@@ -132,7 +123,6 @@ public class Menu {
 
         Drink milkshake =
             new Drink("Milkshake", 4.00, milkshakeIngredients);
-
         foods.add(milkshake);
     }
 
